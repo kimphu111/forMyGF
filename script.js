@@ -1,17 +1,17 @@
-// Tạo trái tim bay
+// Background hearts
 function createHeart() {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
+  heart.classList.add("heart-fly");
   heart.innerHTML = "💖";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = (3 + Math.random() * 3) + "s";
-  document.getElementById("hearts").appendChild(heart);
+  document.getElementById("hearts")?.appendChild(heart);
 
   setTimeout(() => { heart.remove(); }, 5000);
 }
 setInterval(createHeart, 600);
 
-// Hiệu ứng fade chữ khi scroll
+// Fade title khi scroll
 window.addEventListener("scroll", () => {
   const slide1 = document.getElementById("slide1").querySelector("h1");
   let scrollY = window.scrollY;
@@ -23,32 +23,41 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// Step slider logic
-const steps = document.querySelectorAll(".step-slider img");
-const dots = document.querySelectorAll(".step-dots .dot");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
+document.addEventListener("DOMContentLoaded", () => {
+  const paragraph = document.getElementById("animatedParagraph");
+  const text = paragraph.innerText.trim();
+  const words = text.split(" ");
+  paragraph.innerHTML = words.map(word => `<span> ${word} </span>`).join(" ");
 
-let currentIndex = 0;
+  const spans = paragraph.querySelectorAll("span");
 
-function showStep(index) {
-  steps.forEach((s, i) => s.classList.toggle("active", i === index));
-  dots.forEach((d, i) => d.classList.toggle("active", i === index));
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        spans.forEach((span, index) => {
+          setTimeout(() => {
+            span.classList.add("show");
+          }, index * 150); // delay mỗi chữ 0.15s
+        });
+        observer.unobserve(paragraph);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  observer.observe(paragraph);
+});
+
+
+function createEndHeart() {
+  const heartsContainer = document.getElementById("hearts-end");
+  const heart = document.createElement("span");
+  heart.className = "heart-float";
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 90 + "%";
+  heart.style.animationDuration = 3 + Math.random() * 3 + "s";
+  heartsContainer.appendChild(heart);
+
+  setTimeout(() => heart.remove(), 5000);
 }
 
-nextBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex + 1) % steps.length;
-  showStep(currentIndex);
-});
-
-prevBtn.addEventListener("click", () => {
-  currentIndex = (currentIndex - 1 + steps.length) % steps.length;
-  showStep(currentIndex);
-});
-
-dots.forEach(dot => {
-  dot.addEventListener("click", () => {
-    currentIndex = parseInt(dot.dataset.index);
-    showStep(currentIndex);
-  });
-});
+setInterval(createEndHeart, 800); // mỗi 0.8s thả 1 tim

@@ -1,15 +1,16 @@
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
   height: 100%;
   scroll-behavior: smooth;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   background: #ffeef5;
   overflow-x: hidden;
 }
 
 section {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -21,11 +22,20 @@ section {
 h1 {
   font-size: 2.5rem;
   color: #ff4d6d;
-  margin: 0;
+  margin: 0 0 10px;
+}
+.text-slide2 {
+  font-size: 30px; /* hoặc 22px tùy bạn thấy đẹp */
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap; /* giữ text không xuống dòng */
+  overflow: hidden;
+  text-overflow: ellipsis; /* nếu quá dài sẽ có dấu ... */
+  margin-bottom: 10px;
 }
 
-/* Hearts flying */
-.heart {
+/* Hearts flying bg */
+.heart-fly {
   position: absolute;
   bottom: -20px;
   font-size: 24px;
@@ -34,93 +44,283 @@ h1 {
 }
 
 @keyframes floatUp {
-  0% { transform: translateY(0) scale(1); opacity: 1; }
-  100% { transform: translateY(-120vh) scale(1.5); opacity: 0; }
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-120vh) scale(1.5);
+    opacity: 0;
+  }
 }
 
-/* Fade effect khi scroll */
+/* Fade effect */
 .fade-out {
   opacity: 1;
   transition: opacity 1s ease;
 }
-
 .hidden {
   opacity: 0;
 }
 
-/* Step slider */
-.step-slider {
-  margin-top: 20px;
+/* Timeline with images */
+.timeline {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
   position: relative;
-  width: 250px;
-  height: 300px;
+  gap: 10px;
 }
 
-.step-slider img {
-  width: 100%;
-  height: 100%;
+.image-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image-box img {
+  width: 150px;
+  height: 200px;
   object-fit: cover;
   border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  display: none;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeIn 1s ease-in-out;
 }
 
-.step-slider img.active {
+.image-box p {
+  margin-top: 8px;
+  font-size: 0.9rem;
+  color: #444;
+}
+
+/* Line with heart */
+.line {
+  width: 60px;
+  height: 2px;
+  background: #ff4d6d;
+  position: relative;
+}
+
+.line .heart {
+  position: absolute;
+  top: -15px;
+  left: 0;
+  font-size: 20px;
+  animation: moveHeart 3s infinite linear;
+}
+
+@keyframes moveHeart {
+  0% {
+    left: 0;
+    opacity: 1;
+  }
+  50% {
+    left: 50%;
+    opacity: 0.8;
+  }
+  100% {
+    left: 100%;
+    opacity: 1;
+  }
+}
+
+/* Responsive for iPhone 13 Pro Max */
+@media (max-width: 430px) {
+  h1 {
+    font-size: 2rem;
+  }
+  .timeline {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .line {
+    width: 2px;
+    height: 60px;
+  }
+  .line .heart {
+    left: -10px;
+    top: 0;
+    animation: moveHeartVertical 3s infinite linear;
+  }
+  @keyframes moveHeartVertical {
+    0% {
+      top: 0;
+      opacity: 1;
+    }
+    50% {
+      top: 50%;
+      opacity: 0.8;
+    }
+    100% {
+      top: 100%;
+      opacity: 1;
+    }
+  }
+}
+
+/* Slide 3 */
+.text-last3 {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 50px;
+  width: 390px;         /* để bám sát full chiều ngang */
+}
+
+.text-last3 p {
+  font-size: 25px;
+  line-height: 1.8rem;
+  font-weight: 500;
+  text-align: left;    /* bám trái */
+  max-width: 800px;    /* giữ chiều rộng đẹp, không quá dài */
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 cột */
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.gallery-item {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.05);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: auto;
   display: block;
-  animation: fadeIn 0.6s ease-in-out;
+}
+
+.gallery-item p {
+  margin: 17px 5px;
+  font-size: 16px;
+}
+
+@media (max-width: 430px) {
+  .text-slide3 {
+    font-size: 18px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr; /* hiển thị 1 cột trên điện thoại */
+  }
+
+  .gallery-item p {
+    font-size: 13px;
+  }
+}
+
+.text-last3 {
+  display: flex;
+  justify-content: left;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.text-last3 p {
+  font-size: 29px;
+  line-height: 2.6rem;
+  font-weight: 500;
+}
+
+.text-last3 p span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateX(-50px) translateY(20px); /* lệch trái + thấp xuống */
+  color: #ffb6c1; /* hồng nhạt ban đầu */
+  transition: all 0.6s ease;
+}
+
+.text-last3 p span.show {
+  opacity: 1;
+  transform: translateX(0) translateY(0); /* trượt về đúng chỗ */
+  color: #e91e63; /* hồng đậm hơn */
+}
+
+
+#slide4 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+  background: linear-gradient(135deg, #ffe6eb, #fff);
+  text-align: center;
+}
+
+.thank-text {
+  font-size: 2.5rem;
+  color: #e91e63;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeZoom 2s forwards, bounce 1.5s infinite ease-in-out 2s;
+  /* fadeZoom hiện trước, sau 2s bắt đầu bounce */
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px); /* nhảy lên nhẹ như thỏ */
+  }
+}
+
+.thank-sub {
+  margin-top: 20px;
+  opacity: 0;
+  animation: fadeIn 2s 1s forwards, bounce 2s infinite ease-in-out 3s;
+  font-size: 25px;
+  color: #fa7e91;
+  font-weight: 600;
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: left;    /* bám trái */
+  max-width: 700px;    /* không để text trải dài quá */
+  padding: 30px 35px;     /* có khoảng cách lề */
+}
+
+
+@keyframes fadeZoom {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: scale(0.95); }
-  to { opacity: 1; transform: scale(1); }
+  to {
+    opacity: 1;
+  }
 }
 
-/* Controls */
-.controls {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+/* Trái tim bay lên */
+.thank-text {
+  font-size: 35px;
+  color: #e91e63;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: fadeZoom 2s forwards, bounce 1.5s infinite ease-in-out 2s;
+  /* fadeZoom hiện trước, sau 2s bắt đầu bounce */
 }
 
-.controls button {
-  background: #ff4d6d;
-  color: white;
-  border: none;
-  padding: 8px 16px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-size: 0.9rem;
-  transition: background 0.3s;
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px); /* nhảy lên nhẹ như thỏ */
+  }
 }
 
-.controls button:hover {
-  background: #ff1e50;
-}
 
-/* Dots */
-.step-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.step-dots .dot {
-  width: 12px;
-  height: 12px;
-  background: #ddd;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.step-dots .dot.active {
-  background: #ff4d6d;
-}
-
-/* Responsive cho iPhone 13 Pro Max */
-@media (max-width: 430px) {
-  h1 { font-size: 2rem; }
-  .step-slider { width: 200px; height: 250px; }
-  .controls button { padding: 6px 12px; font-size: 0.8rem; }
-}
