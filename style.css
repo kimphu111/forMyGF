@@ -174,6 +174,7 @@ h1 {
   font-weight: 500;
   text-align: left;    /* bám trái */
   max-width: 800px;    /* giữ chiều rộng đẹp, không quá dài */
+  padding: 0 30px;
 }
 
 .gallery {
@@ -324,3 +325,40 @@ h1 {
 }
 
 
+@media (max-width: 430px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  .timeline {
+    flex-direction: row; /* giữ ngang */
+    gap: 10px;
+  }
+
+  .image-box img {
+    width: 110px;
+    height: 150px;
+  }
+
+  .line {
+    width: 30px;
+    height: 2px;
+  }
+
+  .line .heart {
+    top: -10px;
+    left: 0;
+    font-size: 16px;
+    animation: moveHeart 3s infinite linear;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    padding: 0 15px;
+  }
+
+  .gallery-item p {
+    font-size: 12px;
+  }
+}
