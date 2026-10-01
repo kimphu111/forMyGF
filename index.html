@@ -1,103 +1,514 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anni 2 Months 💕</title>
-    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Bích Ngọc & Kim Phú 💕</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --pink: #ffb6c9;
+        --pink-d: #f27aa0;
+        --peach: #ffd8c2;
+        --lav: #d9c8ff;
+        --mint: #c8f0e4;
+        --text: #5a3d55;
+        --glass: rgba(255, 255, 255, 0.35);
+        --glass-b: rgba(255, 255, 255, 0.6);
+        --shadow: 0 8px 32px rgba(214, 130, 170, 0.25);
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: "Quicksand", sans-serif;
+        color: var(--text);
+        min-height: 100vh;
+        overflow-x: hidden;
+        background: linear-gradient(135deg, #ffe4ec 0%, #f3e6ff 45%, #e3f4ff 100%);
+        background-attachment: fixed;
+      }
+      /* Đốm màu nền mờ */
+      .blob { position: fixed; border-radius: 50%; filter: blur(70px); opacity: .55; z-index: -1; animation: float 14s ease-in-out infinite alternate; }
+      .blob.b1 { width: 340px; height: 340px; background: var(--pink); top: -80px; left: -80px; }
+      .blob.b2 { width: 300px; height: 300px; background: var(--lav); bottom: -60px; right: -60px; animation-delay: -5s; }
+      .blob.b3 { width: 240px; height: 240px; background: var(--mint); top: 45%; left: 55%; animation-delay: -9s; }
+      @keyframes float { to { transform: translate(40px, -40px) scale(1.15); } }
+
+      /* Tim bay nền */
+      #bg-hearts { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+      .fly-heart { position: absolute; bottom: -40px; animation: rise linear forwards; opacity: .7; }
+      @keyframes rise { to { transform: translateY(-110vh) rotate(30deg); opacity: 0; } }
+
+      /* Thanh điều hướng */
+      nav {
+        position: fixed; bottom: 14px; left: 50%; transform: translateX(-50%); z-index: 50;
+        display: flex; gap: 4px; padding: 6px; border-radius: 999px;
+        background: var(--glass); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+        border: 1px solid var(--glass-b); box-shadow: var(--shadow);
+      }
+      nav a { text-decoration: none; font-size: 20px; width: 44px; height: 44px; display: grid; place-items: center; border-radius: 50%; transition: .25s; }
+      nav a:hover, nav a.active { background: rgba(255,255,255,.7); transform: translateY(-3px); }
+
+      main { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 24px 16px 110px; }
+      section { padding: 56px 0 24px; scroll-margin-top: 10px; }
+      .glass {
+        background: var(--glass); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-b); border-radius: 28px; box-shadow: var(--shadow); padding: 28px 22px;
+      }
+      h1, h2 { font-family: "Dancing Script", cursive; color: var(--pink-d); text-align: center; line-height: 1.2; }
+      h1 { font-size: clamp(2.6rem, 9vw, 4.4rem); }
+      h2 { font-size: clamp(2rem, 7vw, 2.8rem); margin-bottom: 8px; }
+      .sub { text-align: center; opacity: .8; margin-bottom: 22px; }
+      .btn {
+        border: none; cursor: pointer; font-family: inherit; font-weight: 700; font-size: 1rem;
+        padding: 12px 26px; border-radius: 999px; color: #fff;
+        background: linear-gradient(135deg, #ff9ab8, #c79bff); box-shadow: 0 6px 18px rgba(242,122,160,.4);
+        transition: transform .2s, box-shadow .2s;
+      }
+      .btn:hover { transform: translateY(-2px) scale(1.03); }
+      .btn:active { transform: scale(.96); }
+      .btn.ghost { background: rgba(255,255,255,.7); color: var(--pink-d); box-shadow: none; border: 1px solid var(--pink); }
+      .btn:disabled { opacity: .6; cursor: not-allowed; }
+
+      /* Reveal khi cuộn */
+      .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s ease; }
+      .reveal.show { opacity: 1; transform: none; }
+
+      /* HERO + COUNTER */
+      #hero { min-height: 92vh; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 18px; text-align: center; }
+      .avatar-wrap { display: flex; align-items: center; gap: 10px; }
+      .avatar { width: 96px; height: 96px; border-radius: 50%; object-fit: cover; border: 4px solid #fff; box-shadow: var(--shadow); }
+      .beat { font-size: 2rem; animation: beat 1.2s infinite; }
+      @keyframes beat { 0%,100% { transform: scale(1); } 30% { transform: scale(1.3); } 60% { transform: scale(.95); } }
+      .counter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; width: 100%; max-width: 520px; }
+      .counter div { padding: 14px 4px; border-radius: 20px; background: rgba(255,255,255,.55); }
+      .counter b { display: block; font-size: clamp(1.5rem, 6vw, 2.3rem); color: var(--pink-d); font-variant-numeric: tabular-nums; }
+      .counter span { font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; }
+      .since { font-size: .95rem; opacity: .8; }
+
+      /* TIMELINE + GALLERY */
+      .timeline { display: flex; align-items: center; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 18px; }
+      .photo { background: #fff; padding: 10px 10px 14px; border-radius: 18px; box-shadow: var(--shadow); text-align: center; transition: transform .3s; }
+      .photo:hover { transform: rotate(-2deg) scale(1.03); }
+      .photo img { width: 100%; aspect-ratio: 1; object-fit: cover; border-radius: 12px; display: block; }
+      .photo p { margin-top: 8px; font-size: .9rem; font-weight: 600; }
+      .timeline .photo { width: min(42vw, 230px); }
+      .tl-line { font-size: 1.8rem; animation: beat 1.4s infinite; }
+      .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; margin-top: 10px; }
+      .gallery .photo:nth-child(odd) { transform: rotate(-1.5deg); }
+      .gallery .photo:nth-child(even) { transform: rotate(1.5deg); }
+      .gallery .photo:hover { transform: rotate(0) scale(1.05); }
+      .letter { white-space: pre-line; line-height: 1.8; font-size: 1.02rem; }
+
+      /* FOOD WHEEL */
+      .wheel-wrap { position: relative; width: min(84vw, 360px); aspect-ratio: 1; margin: 10px auto 20px; }
+      #wheel { width: 100%; height: 100%; border-radius: 50%; box-shadow: 0 0 0 8px #fff, var(--shadow); transition: transform 5s cubic-bezier(.17,.67,.12,1); }
+      .pointer { position: absolute; top: -14px; left: 50%; transform: translateX(-50%); width: 0; height: 0; border-left: 16px solid transparent; border-right: 16px solid transparent; border-top: 30px solid var(--pink-d); filter: drop-shadow(0 3px 3px rgba(0,0,0,.2)); z-index: 2; }
+      .wheel-center { position: absolute; inset: 0; margin: auto; width: 64px; height: 64px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 1.8rem; box-shadow: var(--shadow); }
+      .row { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+      .result { text-align: center; margin-top: 18px; min-height: 2.2em; font-size: 1.25rem; font-weight: 700; color: var(--pink-d); }
+      .result.pop { animation: pop .5s; }
+      @keyframes pop { 0% { transform: scale(.6); opacity: 0; } 70% { transform: scale(1.15); } 100% { transform: scale(1); opacity: 1; } }
+
+      /* LOVE JAR */
+      .jar-area { display: flex; flex-direction: column; align-items: center; }
+      .jar { position: relative; width: 190px; height: 240px; cursor: pointer; transition: transform .2s; user-select: none; }
+      .jar:active { transform: scale(.96); }
+      .jar.shake { animation: shake .5s; }
+      @keyframes shake { 0%,100% { transform: rotate(0); } 25% { transform: rotate(-6deg); } 75% { transform: rotate(6deg); } }
+      .jar-lid { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 120px; height: 28px; border-radius: 10px; background: linear-gradient(#f6b8cc, #e892ad); box-shadow: inset 0 -4px 0 rgba(0,0,0,.08); z-index: 3; }
+      .jar-neck { position: absolute; top: 24px; left: 50%; transform: translateX(-50%); width: 104px; height: 22px; background: rgba(255,255,255,.45); border: 2px solid rgba(255,255,255,.85); border-top: none; z-index: 2; }
+      .jar-body {
+        position: absolute; top: 44px; left: 0; right: 0; bottom: 0; border-radius: 40px 40px 50px 50px;
+        background: linear-gradient(115deg, rgba(255,255,255,.55), rgba(255,255,255,.15) 40%, rgba(255,255,255,.35));
+        border: 2px solid rgba(255,255,255,.9); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+        overflow: hidden; box-shadow: inset 0 0 30px rgba(255,255,255,.6), var(--shadow);
+      }
+      .jar-body::after { content: ""; position: absolute; top: 14px; left: 18px; width: 14px; height: 70%; border-radius: 10px; background: rgba(255,255,255,.7); }
+      .jar-item { position: absolute; font-size: 22px; }
+      .jar-label { position: absolute; top: 46%; left: 50%; transform: translate(-50%, -50%); background: #fff; padding: 6px 12px; border-radius: 10px; font-family: "Dancing Script", cursive; font-size: 1.3rem; color: var(--pink-d); z-index: 4; box-shadow: 0 3px 10px rgba(0,0,0,.08); white-space: nowrap; }
+      .flying-note { position: fixed; z-index: 90; font-size: 34px; pointer-events: none; animation: noteOut .7s ease-out forwards; }
+      @keyframes noteOut { to { transform: translate(-50%, -160px) rotate(360deg) scale(1.6); opacity: 0; } }
+
+      .modal { position: fixed; inset: 0; z-index: 100; display: none; place-items: center; padding: 20px; background: rgba(90, 61, 85, .25); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); }
+      .modal.open { display: grid; }
+      .paper {
+        max-width: 380px; width: 100%; padding: 34px 26px 26px; border-radius: 6px; text-align: center; position: relative;
+        background: repeating-linear-gradient(#fffaf0, #fffaf0 30px, #f6e3e9 31px); box-shadow: 0 20px 50px rgba(0,0,0,.2);
+        animation: unroll .6s cubic-bezier(.2,.9,.3,1.2);
+        font-family: "Dancing Script", cursive; font-size: 1.7rem; line-height: 1.5; color: #8a4a6a;
+      }
+      .paper::before { content: "💌"; position: absolute; top: -22px; left: 50%; transform: translateX(-50%); font-size: 2.2rem; }
+      .paper .btn { margin-top: 18px; font-family: "Quicksand"; font-size: .95rem; }
+      @keyframes unroll { from { transform: scaleY(.05) rotate(-8deg); opacity: 0; } to { transform: none; opacity: 1; } }
+
+      /* CATCH-ME */
+      #question .glass { text-align: center; min-height: 300px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 22px; }
+      .q-buttons { display: flex; align-items: center; justify-content: center; gap: 18px; flex-wrap: wrap; }
+      #yesBtn { font-size: 1.6rem; padding: 18px 54px; animation: beat 1.6s infinite; }
+      #noBtn { font-size: .85rem; padding: 8px 16px; background: #fff; color: #999; box-shadow: 0 3px 10px rgba(0,0,0,.08); transition: left .25s ease, top .25s ease; }
+      #noBtn.runaway { position: fixed; z-index: 80; }
+      #loveAnswer { font-size: 1.2rem; font-weight: 700; color: var(--pink-d); min-height: 1.5em; }
+
+      .end { text-align: center; }
+      .end p { line-height: 1.8; }
+      footer { text-align: center; opacity: .7; font-size: .85rem; margin-top: 30px; }
+
+      @media (max-width: 480px) {
+        .glass { padding: 22px 16px; border-radius: 22px; }
+        .counter { gap: 6px; }
+        .avatar { width: 76px; height: 76px; }
+        .gallery { grid-template-columns: repeat(2, 1fr); }
+      }
+      @media (prefers-reduced-motion: reduce) { * { animation: none !important; transition: none !important; } }
+    </style>
   </head>
   <body>
-    <!-- Slide 1 -->
-    <section id="slide1">
-      <h1 class="fade-out">Halooo Bích Ngọc 💕</h1>
-      <div id="hearts"></div>
-    </section>
+    <div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div>
+    <div id="bg-hearts"></div>
 
-    <!-- Slide 2 -->
-    <section id="slide2">
-      <h1 class="text-slide2">Hành trình của tụi mình ✨</h1>
-      <p>
-        "Chúng ta bắt đầu bằng việc react story nhau và trò chuyện từ buổi đầu tiên và cho tới mấy hôm sau mới chính thức nói chuyện. "
-      </p>
+    <nav>
+      <a href="#hero" title="Trang đầu">🏠</a>
+      <a href="#memories" title="Kỷ niệm">📸</a>
+      <a href="#food" title="Ăn gì">🍜</a>
+      <a href="#jar" title="Lọ tình yêu">🫙</a>
+      <a href="#question" title="Câu hỏi">💘</a>
+    </nav>
 
-      <!-- Timeline with 2 images -->
-      <div class="timeline">
-        <div class="image-box">
-          <img src="./assets/1.jpg" alt="Ảnh 1 - Tin nhắn đầu tiên" />
-          <p>Tin nhắn đầu tiên 💌</p>
+    <main>
+      <!-- ===== HERO + ĐỒNG HỒ ===== -->
+      <section id="hero">
+        <div class="avatar-wrap">
+          <!-- THAY ẢNH/CHỮ TẠI ĐÂY: ảnh đại diện 2 người -->
+          <img class="avatar" src="./assets/p1.jpg" alt="Anh" />
+          <span class="beat">💗</span>
+          <img class="avatar" src="./assets/fp1.jpg" alt="Em" />
+        </div>
+        <!-- THAY ẢNH/CHỮ TẠI ĐÂY: lời chào -->
+        <h1>Halooo Bích Ngọc 💕</h1>
+        <p class="since">Tụi mình đã bên nhau được</p>
+        <div class="counter glass">
+          <div><b id="cDays">0</b><span>Ngày</span></div>
+          <div><b id="cHours">00</b><span>Giờ</span></div>
+          <div><b id="cMins">00</b><span>Phút</span></div>
+          <div><b id="cSecs">00</b><span>Giây</span></div>
+        </div>
+        <p class="since">kể từ <b id="startText"></b> ✨</p>
+      </section>
+
+      <!-- ===== KỶ NIỆM ===== -->
+      <section id="memories">
+        <div class="glass reveal">
+          <h2>Hành trình của tụi mình ✨</h2>
+          <!-- THAY ẢNH/CHỮ TẠI ĐÂY -->
+          <p class="sub">"Chúng ta bắt đầu bằng việc react story nhau và trò chuyện từ buổi đầu tiên và cho tới mấy hôm sau mới chính thức nói chuyện."</p>
+          <div class="timeline">
+            <div class="photo"><img src="./assets/1.jpg" alt="Tin nhắn đầu tiên" loading="lazy" /><p>Tin nhắn đầu tiên 💌</p></div>
+            <span class="tl-line">💖</span>
+            <div class="photo"><img src="./assets/2.jpg" alt="Bắt đầu tìm hiểu" loading="lazy" /><p>Bắt đầu tìm hiểu 🌸</p></div>
+          </div>
         </div>
 
-        <div class="line">
-          <span class="heart">💖</span>
+        <div class="glass reveal" style="margin-top: 22px">
+          <h2>Những cái đầu tiên 🌸</h2>
+          <p class="sub">Từng khoảnh khắc nhỏ, đều là kỷ niệm lớn</p>
+          <!-- THAY ẢNH/CHỮ TẠI ĐÂY: thêm/bớt .photo tuỳ ý -->
+          <div class="gallery">
+            <div class="photo"><img src="./assets/fp1.jpg" alt="" loading="lazy" /><p>Tấm ảnh đầu tiên của 2 đứa 💕</p></div>
+            <div class="photo"><img src="./assets/p2n.jpg" alt="" loading="lazy" /><p>Bữa ăn chung đầu tiên 💕</p></div>
+            <div class="photo"><img src="./assets/p2.jpg" alt="" loading="lazy" /><p>Món quà đầu tiên 🏸</p></div>
+            <div class="photo"><img src="./assets/p2text.jpg" alt="" loading="lazy" /><p>Lần đầu nhận thư tay 💕</p></div>
+            <div class="photo"><img src="./assets/p3.jpg" alt="" loading="lazy" /><p>Lần đầu tại nhà em 🍲</p></div>
+            <div class="photo"><img src="./assets/p5eat.jpg" alt="" loading="lazy" /><p>Lần đầu ăn cơm Mẹ em nấu 🍜</p></div>
+            <div class="photo"><img src="./assets/p4.jpg" alt="" loading="lazy" /><p>Món anh nấu tại nhà anh 🍧</p></div>
+            <div class="photo"><img src="./assets/p6pick.jpg" alt="" loading="lazy" /><p>Lần đầu đón em học về 🐰</p></div>
+          </div>
         </div>
 
-        <div class="image-box">
-          <img src="./assets/2.jpg" alt="Ảnh 2 - Bắt đầu tìm hiểu" />
-          <p>Bắt đầu tìm hiểu 🌸</p>
+        <div class="glass reveal" style="margin-top: 22px">
+          <h2>Gửi em 💌</h2>
+          <!-- THAY ẢNH/CHỮ TẠI ĐÂY: thư tình -->
+           <p class="letter">
+            Hé Nhô anh mới cập nhật thêm mấy cái zui zui cũng mong anh thích và anh giữ tất cả mọi thứ cũ của đợt anni 2 tháng của tụi mình
+           </p>
+           <br/>
+          <p class="letter">Lần đầu tiên trong đời, anh có cảm giác được yêu thương và hiểu yêu là như thế nào.
+Không chỉ là sự quan tâm, mà còn là cảm giác được chăm sóc, được thấu hiểu, được sẻ chia… Tất cả những điều ấy làm anh hạnh phúc hơn bao giờ hết.
+
+Em biết không, những giây phút bên em không cần phải làm gì, chỉ đơn giản là ngồi nói chuyện với nhau thôi anh cũng thấy vui rồi. Anh cảm ơn em vì đã đến bên anh, cảm ơn em vì đã yêu anh và cho anh cơ hội được yêu em. Anh rất quý trọng mối quan hệ này và anh mong mình có thể tiến xa hơn. Yêu em nhiều lắm 💕</p>
         </div>
+      </section>
+
+      <!-- ===== VÒNG QUAY ĂN GÌ ===== -->
+      <section id="food">
+        <div class="glass reveal">
+          <h2>Hôm nay ăn gì? 🍜</h2>
+          <p class="sub">Để vòng quay quyết định, khỏi cãi nhau nha 😆</p>
+          <div class="wheel-wrap">
+            <div class="pointer"></div>
+            <canvas id="wheel" width="600" height="600"></canvas>
+            <div class="wheel-center">🍽️</div>
+          </div>
+          <div class="row">
+            <button class="btn" id="spinBtn">Quay thôi! 🎯</button>
+            <button class="btn ghost" id="shuffleBtn">Đổi thực đơn 🔄</button>
+          </div>
+          <div class="result" id="foodResult"></div>
+        </div>
+      </section>
+
+      <!-- ===== LỌ THỦY TINH TÌNH YÊU ===== -->
+      <section id="jar">
+        <div class="glass reveal jar-area">
+          <h2>Lọ thủy tinh tình yêu 🫙</h2>
+          <p class="sub">Chạm vào lọ để rút một mảnh giấy nhé</p>
+          <div class="jar" id="loveJar" role="button" tabindex="0" aria-label="Rút một lời nhắn">
+            <div class="jar-lid"></div>
+            <div class="jar-neck"></div>
+            <div class="jar-body" id="jarBody"></div>
+            <div class="jar-label">For You 💕</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CATCH-ME ===== -->
+      <section id="question">
+        <div class="glass reveal">
+          <h2>Em có yêu anh không? 🥺</h2>
+          <div class="q-buttons">
+            <button class="btn" id="yesBtn">Có 💖</button>
+            <button class="btn" id="noBtn">Không</button>
+          </div>
+          <div id="loveAnswer"></div>
+        </div>
+      </section>
+
+      <!-- ===== CẢM ƠN ===== -->
+      <section id="thanks">
+        <div class="glass reveal end">
+          <h2>Cảm ơn em vì tất cả 💕</h2>
+          <!-- THAY ẢNH/CHỮ TẠI ĐÂY -->
+          <p>Quãng thời gian qua là hành trình tuyệt đẹp, chắc chắn là kỷ niệm đẹp nhất mà anh từng có. Anh tin rằng chặng đường phía trước sẽ còn rực rỡ hơn nữa, bởi có em, mọi khoảnh khắc đều trở thành hạnh phúc. 🌸✨</p>
+        </div>
+        <footer>Made with 💗 by Phúuu</footer>
+      </section>
+    </main>
+
+    <!-- Modal tờ giấy -->
+    <div class="modal" id="noteModal">
+      <div class="paper">
+        <div id="noteText"></div>
+        <button class="btn" id="closeNote">Cất vào tim 💗</button>
       </div>
-    </section>
+    </div>
 
-    <!-- Slide 3 -->
-    <section id="slide3">
-      <h1 class="text-slide3">Những cái đầu tiên của chúng mình 🌸</h1>
+    <script>
+      // ================== CẤU HÌNH ==================
+      // THAY ẢNH/CHỮ TẠI ĐÂY: ngày bắt đầu yêu (năm, tháng-1, ngày, giờ, phút)
+      const START_DATE = new Date(2025, 6, 23, 0, 0, 0); // 23/07/2025 00:00
 
-      <div class="gallery">
-        <div class="gallery-item">
-          <img src="./assets/fp1.jpg" alt="Lần đầu tiên" />
-          <p>Tấm ảnh đầu tiên của 2 đứa 💕</p>
-        </div>
-        <div class="gallery-item">
-          <img src="./assets/p2n.jpg" alt="Đi ăn 2" />
-          <p>Bữa ăn chung đầu tiên của mình 💕</p>
-        </div>
-        <div class="gallery-item">
-          <img src="./assets/p2.jpg" alt="Đi ăn 1" />
-          <p>Món quà đầu tiên 🏸</p>
-        </div>
-        <div class="gallery-item">
-          <img src="./assets/p2text.jpg" alt="Lần đầu tiên" />
-          <p>Lần đầu anh được nhận thư tay 💕</p>
-        </div>
-        <div class="gallery-item">
-          <img src="./assets/p3.jpg" alt="Đi ăn 3" />
-          <p>Lần đầu tại nhà em🍲</p>
-        </div>
-        <div class="gallery-item">
-          <img src="./assets/p5eat.jpg" alt="Đi ăn 1" />
-          <p>Lần đầu anh ăn đồ ăn Mẹ em nấu nhà em 🍜</p>
-        </div>
-        <div class="gallery-item">
-          <img src="./assets/p4.jpg" alt="Đi ăn 3" />
-          <p>Món anh nấu tại nhà anh 🍧</p>
-        </div>
-        <div class="gallery-item">
-          <img src="./assets/p6pick.jpg" alt="Đi ăn 2" />
-          <p>lần đầu đón em học về 🐰</p>
-        </div>
-      </div>
+      // THAY ẢNH/CHỮ TẠI ĐÂY: danh sách 100 món ăn cho vòng quay
+      const FOODS = [
+        "Phở bò", "Phở gà", "Bún bò Huế", "Bún riêu cua", "Bún thịt nướng", "Bún chả", "Hủ tiếu Nam Vang", "Hủ tiếu gõ", "Hủ tiếu cá", "Hủ tiếu xào",
+        "Mì gõ", "Mì Quảng", "Bánh canh cua", "Bún mắm", "Bún đậu mắm tôm", "Bún thái", "Miến gà", "Nui xào bò", "Bò kho", "Phá lấu bò",
+        "Cơm tấm sườn bì chả", "Cơm gà xối mỡ", "Cơm chiên dương châu", "Cơm chiên cá mặn", "Cơm thố", "Cơm niêu", "Cơm xào chua ngọt", "Cơm rang dưa bò", "Bánh mì thịt nguội", "Bánh mì heo quay",
+        "Bánh mì chảo", "Bánh mì xíu mại", "Bánh mì ốp la", "Gỏi cuốn", "Bò bía", "Nem nướng cuốn", "Bánh ướt thịt nướng", "Bánh cuốn", "Bánh tráng trộn", "Bánh tráng nướng",
+        "Bánh xèo", "Bánh khọt", "Bột chiên", "Bánh bèo", "Bánh nậm", "Bánh lọc", "Bánh đúc nóng", "Bánh tằm bì", "Bánh chuối nướng", "Gỏi đu đủ tôm thịt",
+        "Gỏi bò khô", "Súp cua", "Há cảo", "Xíu mại", "Dimsum", "Xôi mặn", "Xôi gà", "Xôi sầu riêng", "Xôi xéo", "Hột vịt lộn xào me",
+        "Trứng cút lộn xào me", "Bắp xào mỡ hành", "Cá viên chiên", "Tàu hũ nước đường", "Ốc hương rang muối", "Ốc len xào dừa", "Sò điệp nướng mỡ hành", "Nghêu hấp sả", "Càng ghẹ rang muối ớt", "Hào nướng phô mai",
+        "Lẩu thái", "Lẩu hải sản", "Lẩu cá diêu hồng", "Lẩu gà lá giang", "Lẩu bò", "Lẩu dê", "Lẩu mắm", "Lẩu cá kèo", "Bò né", "Bò lá lốt",
+        "Gà nướng muối ớt", "Chân gà nướng", "Chân gà ngâm sả tắc", "Dê núi nướng", "Sườn nướng BBQ", "Bạch tuộc nướng", "Mực nướng sa tế", "Chè Thái", "Chè bưởi", "Chè ba màu",
+        "Chè chuối", "Sâm bổ lượng", "Sinh tố bơ", "Nước mía", "Trà sữa", "Kem bơ", "Cút chiên bơ", "Trà đào cam sả", "Bingsu", "Bánh crepe sầu riêng"
+      ];
 
-      <div class="text-last3">
-        <p id="animatedParagraph">
-Lần đầu tiên trong đời, anh có cảm giác được yêu thương và hiểu yêu là như thế nào.
-Không chỉ là sự quan tâm, mà còn là cảm giác được chăm sóc, được thấu hiểu, được chia sẽ…
-Tất cả những điều ấy làm anh hạnh phúc hơn bao giờ hết.
+      // THAY ẢNH/CHỮ TẠI ĐÂY: các câu trong Lọ tình yêu (thêm/bớt thoải mái)
+      const LOVE_NOTES = [
+        "Anh yêu em lắm óoo",
+        "Hôm nay công chúa của anh thế nào?",
+        "Hello bà chằnggg",
+        "Chúc em một ngày thật bình ann",
+        "Em cóa nhớ anh hong?",
+        "Nay em cóa gì vui hong",
+        "Yêu em vì em đã viết thư tay cho anh ",
+        "Uống đủ nước chưa đó cô gái? ",
+        "Yêu em 3000",
+        "Nhớ em ghê trờii",
+        "Gặp thì hun anh 1 cái thật lâu nheee",
+        "Đi ăn hongggg",
+        "Em khỏe honggg",
+        "Ăn uống gì chưa đó bà chằng",
+        "Ngủ sớm đi nhe",
+        "Đừng có lột móng nữa đó"
+      ];
 
-Em biết không những giây phút bên em không cần phải làm gì chỉ đơn giản là ngồi nói chuyện với nhau thôi anh cũng thấy vui rồi. Anh cảm ơn em vì đã đến bên anh, cảm ơn em vì đã yêu anh và cho anh cơ hội được yêu em. Anh rất là quý trọng mối quan hệ này và anh mong mình có thể tiến xa hơn. Yêu em nhiều lắm 💕
-        </p>
-      </div>
-    </section>
+      // THAY ẢNH/CHỮ TẠI ĐÂY: các câu nút "Không" trêu chọc khi né + câu khi bấm "Có"
+      const NO_TEASES = ["Không", "Chắc chưa?", "Nghĩ lại đi ", "Bắt được anh đâu 😝", "Thôi bấm Có đi", "Không có cửa đâu 😆"];
+      const YES_MESSAGE = "Anh biết màaa! Anh cũng yêu em nhất trên đời 💖💖💖";
 
-    <!-- Slide 4 -->
-<section id="slide4">
-  <div class="thankyou-box">
-    <h1 class="thank-text">Cảm ơn em vì tất cả 💕</h1>
-    <p class="thank-sub">Hai tháng qua là hành trình tuyệt đẹp đây chắn chắn là kĩ niệm đẹp nhất mà anh từng có , và anh tin rằng chặng đường phía trước sẽ còn rực rỡ hơn nữa, bởi có em, mọi khoảnh khắc đều trở thành hạnh phúc. 🌸✨</p>
-    <div id="hearts-end"></div>
-  </div>
-</section>
+      // ================== ĐỒNG HỒ ==================
+      const pad = (n) => String(n).padStart(2, "0");
+      document.getElementById("startText").textContent =
+        `${pad(START_DATE.getDate())}/${pad(START_DATE.getMonth() + 1)}/${START_DATE.getFullYear()}`;
+      function tick() {
+        let diff = Math.max(0, Math.floor((Date.now() - START_DATE.getTime()) / 1000));
+        const d = Math.floor(diff / 86400); diff %= 86400;
+        const h = Math.floor(diff / 3600); diff %= 3600;
+        const m = Math.floor(diff / 60), s = diff % 60;
+        cDays.textContent = d; cHours.textContent = pad(h); cMins.textContent = pad(m); cSecs.textContent = pad(s);
+      }
+      tick(); setInterval(tick, 1000);
 
+      // ================== VÒNG QUAY ==================
+      const canvas = document.getElementById("wheel");
+      const ctx = canvas.getContext("2d");
+      const COLORS = ["#ffc6d9", "#e3d5ff", "#c8f0e4", "#ffe1c6", "#ffd1dc", "#d6ecff", "#fff1b8", "#f6d0ff"];
+      const SLICES = 8, SLICE_ANG = (2 * Math.PI) / SLICES;
+      let menu = [], rotation = 0, spinning = false;
 
-    <script src="script.js"></script>
+      function pickMenu() {
+        const pool = [...FOODS];
+        for (let i = pool.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [pool[i], pool[j]] = [pool[j], pool[i]]; }
+        menu = pool.slice(0, SLICES);
+        drawWheel();
+        foodResult.textContent = "";
+      }
+
+      function wrapText(text, maxW) {
+        const words = text.split(" "), lines = [];
+        let line = "";
+        for (const w of words) {
+          const t = line ? line + " " + w : w;
+          if (ctx.measureText(t).width > maxW && line) { lines.push(line); line = w; } else line = t;
+        }
+        lines.push(line);
+        return lines.slice(0, 3);
+      }
+
+      function drawWheel() {
+        const c = canvas.width / 2, r = c - 6;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        menu.forEach((food, i) => {
+          const start = -Math.PI / 2 + i * SLICE_ANG;
+          ctx.beginPath(); ctx.moveTo(c, c); ctx.arc(c, c, r, start, start + SLICE_ANG); ctx.closePath();
+          ctx.fillStyle = COLORS[i % COLORS.length]; ctx.fill();
+          ctx.strokeStyle = "#fff"; ctx.lineWidth = 4; ctx.stroke();
+          ctx.save();
+          ctx.translate(c, c); ctx.rotate(start + SLICE_ANG / 2);
+          ctx.fillStyle = "#5a3d55"; ctx.font = "600 24px Quicksand, sans-serif"; ctx.textAlign = "right"; ctx.textBaseline = "middle";
+          const lines = wrapText(food, r - 90);
+          lines.forEach((ln, k) => ctx.fillText(ln, r - 20, (k - (lines.length - 1) / 2) * 26));
+          ctx.restore();
+        });
+      }
+
+      function spin() {
+        if (spinning) return;
+        spinning = true; spinBtn.disabled = shuffleBtn.disabled = true;
+        foodResult.textContent = "Đang quay… 🤞"; foodResult.classList.remove("pop");
+        const idx = Math.floor(Math.random() * SLICES);
+        const jitter = (Math.random() - 0.5) * 30; // lệch nhẹ trong ô cho tự nhiên
+        const target = 360 - (idx * 45 + 22.5) + jitter;
+        const current = ((rotation % 360) + 360) % 360;
+        rotation += 360 * 6 + ((target - current + 360) % 360);
+        canvas.style.transform = `rotate(${rotation}deg)`;
+        setTimeout(() => {
+          spinning = false; spinBtn.disabled = shuffleBtn.disabled = false;
+          foodResult.textContent = `Hôm nay mình ăn: ${menu[idx]} 😋`;
+          void foodResult.offsetWidth; foodResult.classList.add("pop");
+          burst(12);
+        }, 5100);
+      }
+      spinBtn.addEventListener("click", spin);
+      shuffleBtn.addEventListener("click", pickMenu);
+      document.fonts ? document.fonts.ready.then(pickMenu) : pickMenu();
+
+      // ================== LỌ TÌNH YÊU ==================
+      const jarBody = document.getElementById("jarBody");
+      const JAR_ITEMS = ["💗", "📜", "🍬", "💖", "🍭", "💕", "📜", "💝"];
+      for (let i = 0; i < 22; i++) {
+        const el = document.createElement("span");
+        el.className = "jar-item";
+        el.textContent = JAR_ITEMS[i % JAR_ITEMS.length];
+        el.style.left = 10 + Math.random() * 140 + "px";
+        el.style.bottom = 4 + Math.floor(i / 6) * 26 + Math.random() * 10 + "px";
+        el.style.transform = `rotate(${Math.random() * 60 - 30}deg)`;
+        jarBody.appendChild(el);
+      }
+      let notePool = [];
+      function drawNote() {
+        if (!notePool.length) notePool = [...LOVE_NOTES].sort(() => Math.random() - 0.5); // hết vòng mới lặp lại
+        return notePool.pop();
+      }
+      function openJar() {
+        loveJar.classList.remove("shake"); void loveJar.offsetWidth; loveJar.classList.add("shake");
+        const rect = loveJar.getBoundingClientRect();
+        const fly = document.createElement("div");
+        fly.className = "flying-note"; fly.textContent = "📜";
+        fly.style.left = rect.left + rect.width / 2 + "px"; fly.style.top = rect.top + "px";
+        document.body.appendChild(fly);
+        setTimeout(() => {
+          fly.remove();
+          noteText.textContent = drawNote();
+          noteModal.classList.add("open");
+        }, 650);
+      }
+      loveJar.addEventListener("click", openJar);
+      loveJar.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openJar(); } });
+      closeNote.addEventListener("click", () => noteModal.classList.remove("open"));
+      noteModal.addEventListener("click", (e) => { if (e.target === noteModal) noteModal.classList.remove("open"); });
+
+      // ================== NÚT CHẠY TRỐN ==================
+      let teaseIdx = 0;
+      function runAway(e) {
+        if (e) e.preventDefault();
+        const b = noBtn.getBoundingClientRect();
+        if (!noBtn.classList.contains("runaway")) {
+          noBtn.style.left = b.left + "px"; noBtn.style.top = b.top + "px";
+          noBtn.classList.add("runaway");
+        }
+        const m = 12, maxX = window.innerWidth - b.width - m, maxY = window.innerHeight - b.height - m;
+        let x, y, tries = 0;
+        do { // chọn vị trí cách xa con trỏ / vị trí cũ
+          x = m + Math.random() * (maxX - m); y = m + Math.random() * (maxY - m);
+        } while (Math.hypot(x - b.left, y - b.top) < 150 && ++tries < 20);
+        noBtn.style.left = x + "px"; noBtn.style.top = y + "px";
+        teaseIdx = (teaseIdx + 1) % NO_TEASES.length;
+        noBtn.textContent = NO_TEASES[teaseIdx];
+      }
+      ["mouseenter", "pointerdown", "touchstart", "focus"].forEach((ev) => noBtn.addEventListener(ev, runAway, { passive: false }));
+      noBtn.addEventListener("click", (e) => { e.preventDefault(); runAway(); });
+      yesBtn.addEventListener("click", () => {
+        loveAnswer.textContent = YES_MESSAGE;
+        noBtn.style.display = "none";
+        burst(40);
+      });
+
+      // ================== HIỆU ỨNG ==================
+      const bg = document.getElementById("bg-hearts");
+      const HEARTS = ["💗", "💕", "💖", "🩷", "🌸", "✨"];
+      function spawnHeart(fast) {
+        const h = document.createElement("span");
+        h.className = "fly-heart";
+        h.textContent = HEARTS[Math.floor(Math.random() * HEARTS.length)];
+        h.style.left = Math.random() * 100 + "vw";
+        h.style.fontSize = 14 + Math.random() * 22 + "px";
+        const dur = fast ? 2.5 + Math.random() * 2 : 8 + Math.random() * 8;
+        h.style.animationDuration = dur + "s";
+        bg.appendChild(h);
+        setTimeout(() => h.remove(), dur * 1000);
+      }
+      function burst(n) { for (let i = 0; i < n; i++) setTimeout(() => spawnHeart(true), i * 40); }
+      setInterval(() => spawnHeart(false), 900);
+
+      const io = new IntersectionObserver((entries) => entries.forEach((en) => en.isIntersecting && en.target.classList.add("show")), { threshold: 0.12 });
+      document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+      const navLinks = document.querySelectorAll("nav a");
+      const navIO = new IntersectionObserver((entries) => entries.forEach((en) => {
+        if (en.isIntersecting) navLinks.forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#" + en.target.id));
+      }), { threshold: 0.4 });
+      document.querySelectorAll("main > section").forEach((s) => navIO.observe(s));
+    </script>
   </body>
 </html>
